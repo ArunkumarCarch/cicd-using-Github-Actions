@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-hpa
+  namespace: todo-lab
+spec:
+  scaleTargetRef:             # 👇 tells HPA which Deployment to scale
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api                 # 👈 this must match your api.yaml Deployment name
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
