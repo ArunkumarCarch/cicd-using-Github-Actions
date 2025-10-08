@@ -38,7 +38,7 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/todo-api:${{ env.VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/todo-api:${{ github.sha }}
 
-      - name: Building and Pushing WEB image
+      - name: Building and Pushing Web image
         uses: docker/build-push-action@v6
         with:
           context: ./web
